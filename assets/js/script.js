@@ -162,3 +162,30 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+const projectLinks = document.querySelectorAll(".project-link");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const lightboxClose = document.getElementById("lightbox-close");
+
+projectLinks.forEach(link => {
+  link.addEventListener("click", function (e) {
+    e.preventDefault(); // stops the # jump
+    const imgSrc = this.querySelector("img").getAttribute("src");
+    const imgAlt = this.querySelector("img").getAttribute("alt");
+
+    lightboxImg.setAttribute("src", imgSrc);
+    lightboxImg.setAttribute("alt", imgAlt);
+    lightbox.classList.add("active");
+  });
+});
+
+lightboxClose.addEventListener("click", () => {
+  lightbox.classList.remove("active");
+});
+
+lightbox.addEventListener("click", (e) => {
+  if (e.target === lightbox) {
+    lightbox.classList.remove("active");
+  }
+});
